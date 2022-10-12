@@ -1,0 +1,54 @@
+// Colors: 
+// https://colorhunt.co/palette/fa7070fbf2cfc6ebc5a1c298
+
+.Card {
+	display: flex;
+	flex-direction: column;
+	justify-items: stretch;
+	align-items: stretch;
+	margin: 2rem;
+
+	border-radius: 0.5rem;
+	// border-radius: 50px;
+	background: #fbf2cf;
+	box-shadow:  0.6rem 0.6rem 1.8rem #d5ceb0,
+							-0.6rem -0.6rem 1.8rem #ffffee;
+
+	> header {
+		padding: 0.5rem 0 0.5rem 0; 
+		text-align: center;
+		border-radius: 0.5rem 0.5rem 0 0;
+		background: #fa7070;
+		color: #fbf2cf;
+	}
+	
+	> footer {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-self: stretch;
+	}
+	
+	> footer div {
+		text-align: center;
+		width: 100%;
+		height: 100%;
+		padding: 1rem 1rem;
+		background: #c6ebc5;
+		
+		transition-duration: 0.3s;
+
+		&:first-child {
+			border-radius: 0 0 0 0.5rem;
+		}
+
+		&:last-child {
+			border-radius: 0 0 0.5rem 0;
+		}
+		
+		&:hover {
+			background: #a1c298;
+			background-blend-mode: soft-light;
+		}
+	}
+}
