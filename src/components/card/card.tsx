@@ -3,14 +3,10 @@ import { CardInterface, footerMenus } from './card.model';
 import "./card.scss"
 
 export const Card = ({label, pointClickCallback}: CardInterface) => {
-	
-
 	return (
 		<article className="Card">
-			<header>우울증 선별도구 PHQ-9</header>
+			<header>지난 2주 동안에...</header>
 			<section>
-				지난 2주 동안에...
-				<br/>
 				{label}
 			</section>
 			<footer>

@@ -1,0 +1,23 @@
+.Panel {
+	display: flex;
+	width: 80%;
+	height: 100%;
+	text-align: center;
+	padding: 1rem 0 1rem 0;
+	margin: 0 2rem 0 2rem;
+	border-radius: 0.5rem;
+	
+	flex-direction: row;
+	justify-content: center;
+
+	background: #c6ebc5;
+	box-shadow:  inset 1.0rem 1.0rem 1.8rem #a8c8a7,
+								inset -1.0rem -1.0rem 1.8rem #e4ffe3;
+	
+	&.Warning {
+		color: #FBF2CF;
+		background: #fa7070;
+		box-shadow:  inset 1.0rem 1.0rem 1.8rem #d55f5f,
+								inset -1.0rem -1.0rem 1.8rem #ff8181;
+	}
+}
