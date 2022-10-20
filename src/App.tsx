@@ -3,6 +3,8 @@ import './App.scss'
 import { Card } from './components/card/card'
 import { Panel } from './components/panel/panel';
 
+import { Container, Box, Progress, VStack } from '@chakra-ui/react'
+
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [currentPoint, setCurrentPoint] = useState<number>(0);
@@ -20,20 +22,26 @@ function App() {
   ];
 
   return (
-    <>
-      <Panel color="warning"
-        label={`우울증 선별도구 PHQ9 (${currentStep + 1}/${labels.length})`}
-      />
-      <Card label={labels[currentStep]}
+    <Container>
+      <VStack>
+        <Panel color="warning">
+          <span>{`우울증 선별도구 PHQ9 (${currentStep + 1}/${labels.length})`}</span>
+        </Panel>
+        <Card label={labels[currentStep]}
         pointClickCallback={(point) => {
-          if (currentStep < labels.length-1) {
+          if (currentStep < labels.length) {
             setCurrentPoint(currentPoint + point);
             setCurrentStep(currentStep + 1);
           }
-        }}
-      />
-      <Panel label={`${currentPoint}`}/>
-    </>
+        }}/>
+        <Panel>
+          <Box>
+            <span>{`현재까지 점수: ${currentPoint}`}</span>
+            <Progress value={ ((currentPoint) / (3 * labels.length)) * 100 } />
+          </Box>
+        </Panel>
+      </VStack>
+    </Container>
   )
 }
 

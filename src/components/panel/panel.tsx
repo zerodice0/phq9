@@ -1,7 +1,13 @@
+import { ReactNode } from "react";
 import "./panel.scss";
 
-export const Panel = ({label, color}: {label: string, color?: string}) => {
-	return <div className={color === "warning" ? "Panel Warning": "Panel"}>
-			<span>{label}</span>
+export const Panel = (
+	{color, children}
+	: {color?: string, children: ReactNode}
+) => {
+	return (
+		<div className={color === "warning" ? "Panel Warning": "Panel"}>
+			{children}
 		</div>
+	);
 }
