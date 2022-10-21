@@ -5,9 +5,16 @@ import { Panel } from './components/panel/panel';
 
 import { Container, Box, Progress, VStack } from '@chakra-ui/react'
 
+interface QuizState {
+  step: number,
+  point: number
+}
+
 function App(): JSX.Element {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [currentPoint, setCurrentPoint] = useState<number>(0);
+  const [currentQuiz, setCurrentQuiz] = useState<QuizState>({
+    step: 0,
+    point: 0
+  });
 
   const parsePointToColorSchemeAndMessage = (point: number): {
     colorScheme: string,
@@ -18,7 +25,7 @@ function App(): JSX.Element {
 
     if (point < 4) {
       colorScheme = "green";
-      colorScheme = "우울증 아님";
+      message = "우울증 아님";
     } else if (point < 9) {
       colorScheme = "yellow";
       message = "가벼운 우울증";
@@ -34,9 +41,7 @@ function App(): JSX.Element {
       colorScheme: colorScheme,
       message: message
     };
-  }
-
-  
+  }  
   
   const labels = [
     "기분이 가라앉거나, 우울하거나, 희망이 없다고 느꼈다.",
@@ -51,36 +56,37 @@ function App(): JSX.Element {
   ];
   
   const renderQuizPanel = () => 
-    <Card label={labels[currentStep]}
+    <Card label={labels[currentQuiz.step]}
       pointClickCallback={(point) => {
-        if (currentStep < labels.length) {
-          setCurrentPoint(currentPoint + point);
-          setCurrentStep(currentStep + 1);
+        if (currentQuiz.step < labels.length) {
+          setCurrentQuiz({
+            point: currentQuiz.point + point,
+            step: currentQuiz.step + 1
+          });
         }
       }}/>
   
   const renderResultPanel = () => 
     <Container></Container>
 
-  const isQuizStage = currentStep < labels.length;
-  const {colorScheme, message} = parsePointToColorSchemeAndMessage(currentPoint);
-
-  console.log(colorScheme)
+  const {step, point} = currentQuiz;
+  const isQuizStage = step < labels.length;
+  const {colorScheme, message} = parsePointToColorSchemeAndMessage(point);
 
   return (
     <Container>
       <VStack>
         <Panel color="warning">
-          <span>{`우울증 선별도구 PHQ9 (${currentStep + 1}/${labels.length})`}</span>
+          <span>{`우울증 선별도구 PHQ9 (${step + 1}/${labels.length})`}</span>
         </Panel>
         { isQuizStage ?
             renderQuizPanel()
             : renderResultPanel() }
         <Panel>
           <Box className="ProgressBox">
-            <span>{`${message} (${currentPoint})`}</span>
+            <span>{`${message} (${point})`}</span>
             <Progress colorScheme={colorScheme}
-              value={ ((currentPoint) / (3 * labels.length)) * 100 } />
+              value={ ((point) / (3 * labels.length)) * 100 } />
           </Box>
         </Panel>
       </VStack>
