@@ -11,5 +11,4 @@ const Template: ComponentStory<typeof Panel> = (args) => <Panel {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-	label: "Hello, Panel!"
 }
